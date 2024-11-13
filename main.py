@@ -10,31 +10,40 @@ import telegramify_markdown
 # Load environment variables at the start
 load_dotenv()
 # Access your environment variables
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHANNEL_ID = os.getenv('TELEGRAM_CHANNEL_ID')
+DISCORD_USER_TOKEN = os.getenv('DISCORD_USER_TOKEN')
 
-# Initialize Discord client
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix='!', intents=intents)
+client = commands.Bot(command_prefix="!", self_bot=True)
 
-# Initialize Telegram bot
 telegram_bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
-@bot.event
+@client.event
 async def on_ready():
-    print(f'{bot.user} has connected to Discord!')
+    print(f'Logged in as {client.user}')
 
-@bot.event
+@client.event
 async def on_message(message):
-    # Ignore messages from the bot itself
-    if message.author == bot.user:
-        return
+    # Get channel and server info
     solana_addresses = detect_solana_token_address(message.content)
     # logger.info(f"Detected Solana addresses: {solana_addresses}")
     if solana_addresses:
-        tmp = f"# {solana_addresses[0]}\n\n{message.author.name} in #{message.channel.name}:\n{message.content}"
+
+
+        # Send the message to the Telegram channel
+        channel_name = message.channel.name
+        server_name = message.guild.name if message.guild else "DM"
+        
+            # Author: {message.author}
+        # Format the message content
+        log_message = f"""
+    Server: {server_name}
+    Channel: {channel_name}
+    Content: {message.content}
+    Time: {message.created_at}
+    """
+        logger.info(log_message)
+        tmp = f"# {solana_addresses[0]}\n\n{log_message}"
         content = telegramify_markdown.markdownify(tmp)
         
         await telegram_bot.send_message(
@@ -43,7 +52,8 @@ async def on_message(message):
             parse_mode="MarkdownV2"
         )
         logger.info(f"Detected Solana addresses: {solana_addresses}")
-    await bot.process_commands(message)
 
-# Run the Discord bot
-bot.run(DISCORD_TOKEN)
+    # Check if the message is a Telegram channel
+
+# Replace 'YOUR_UESR_TOKEN' with your account token
+client.run(DISCORD_USER_TOKEN)
