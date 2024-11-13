@@ -1,4 +1,4 @@
-# Discord to Discord DM Forwarder
+# Discord to Telegram DM Forwarder
 
 This is a simple Python script that forwards messages from a Discord channel to Telegram channel when a message includes a solana Token Address.
 
@@ -46,7 +46,6 @@ pip install -r requirements.txt
 DISCORD_TOKEN =
 TELEGRAM_TOKEN =
 TELEGRAM_CHANNEL_ID =
-
 ```
 
 5. Run the script:
