@@ -18,7 +18,9 @@ This is a simple Python script that forwards messages from a Discord channel to 
 ## Prerequisites
 
 - Python 3.13.0 or higher
-- Discord account (More than 2)
+- Discord bot
+- Telegram bot
+- Telegram channel
 
 ## Configuration
 
