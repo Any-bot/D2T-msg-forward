@@ -3,6 +3,11 @@
 This is a simple Python script that forwards messages from a Discord channel to a Telegram channel when a message includes a Solana token address.
 This is a **self-bot**.
 
+
+https://github.com/user-attachments/assets/b36c8258-cb1c-416f-be5e-98b17236039e
+
+
+
 ## Main Features
 
 - Forward messages from a Discord channel to a Telegram channel.
