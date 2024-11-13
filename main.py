@@ -29,21 +29,22 @@ async def on_message(message):
     # logger.info(f"Detected Solana addresses: {solana_addresses}")
     if solana_addresses:
 
-
         # Send the message to the Telegram channel
-        channel_name = message.channel.name
+        channel_name = getattr(message.channel, 'name', 'direct-message')
+    
+        # Get server name safely
         server_name = message.guild.name if message.guild else "DM"
         
-            # Author: {message.author}
         # Format the message content
         log_message = f"""
     Server: {server_name}
     Channel: {channel_name}
+    Author: {message.author}
     Content: {message.content}
     Time: {message.created_at}
     """
         logger.info(log_message)
-        tmp = f"# {solana_addresses[0]}\n\n{log_message}"
+        tmp = f"# {solana_addresses[0]}\n{log_message}"
         content = telegramify_markdown.markdownify(tmp)
         
         await telegram_bot.send_message(
@@ -55,5 +56,4 @@ async def on_message(message):
 
     # Check if the message is a Telegram channel
 
-# Replace 'YOUR_UESR_TOKEN' with your account token
 client.run(DISCORD_USER_TOKEN)
