@@ -22,6 +22,7 @@ client = commands.Bot(command_prefix="!", self_bot=True)
 
 telegram_bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
+
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
@@ -41,7 +42,6 @@ async def on_message(message):
 # """
 # Author: {message.author}
         # logger.info(log_message)
-
 
         #filter
         tracked_addresses = load_tracked_addresses()

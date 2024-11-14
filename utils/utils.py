@@ -42,3 +42,4 @@ def save_address(address):
     addresses.append(address)
     with open(TRACKED_ADDRESSES_FILE, 'w') as f:
         json.dump(addresses, f)
+
