@@ -16,7 +16,6 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHANNEL_ID = os.getenv('TELEGRAM_CHANNEL_ID')
 DISCORD_USER_TOKEN = os.getenv('DISCORD_USER_TOKEN')
 
-print(f"TELEGRAM_CHANNEL_ID, {TELEGRAM_CHANNEL_ID}")
 
 client = commands.Bot(command_prefix="!", self_bot=True)
 
@@ -33,16 +32,6 @@ async def on_message(message):
     logger.info(f"Detected Solana addresses: {solana_addresses}")
 
     if solana_addresses:
-        # channel_name = getattr(message.channel, 'name', 'direct-message')
-        # server_name = message.guild.name if message.guild else "DM"
-        
-#         log_message = f"""
-# Server: {server_name}
-# Channel: {channel_name}
-# """
-# Author: {message.author}
-        # logger.info(log_message)
-
         #filter
         tracked_addresses = load_tracked_addresses()
         # Send separate message for each address
@@ -58,8 +47,8 @@ async def on_message(message):
                 )
                 logger.info(f"Sent message for address: {address}")
                 save_address(address)
-                await asyncio.sleep(1)
+                await asyncio.sleep(1) # Add a delay 1 second between messages
             else:
-                logger.info(f"Address already tracked: {address}")
+                logger.error(f"Address already tracked: {address}")
 
 client.run(DISCORD_USER_TOKEN)
