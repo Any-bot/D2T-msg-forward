@@ -1,5 +1,7 @@
 import re
 import requests
+import json
+import os
 
 def detect_solana_token_address(message):
     # Check if message contains dexscreener URL
@@ -23,3 +25,20 @@ def detect_solana_token_address(message):
     pattern = r'[1-9A-HJ-NP-Za-km-z]{32,44}'
     matches = re.findall(pattern, message)
     return [match for match in matches if len(match) >= 32 and len(match) <= 44]
+
+
+
+# At the start of your script, load or create the JSON file
+TRACKED_ADDRESSES_FILE = 'tracked_addresses.json'
+
+def load_tracked_addresses():
+    if os.path.exists(TRACKED_ADDRESSES_FILE):
+        with open(TRACKED_ADDRESSES_FILE, 'r') as f:
+            return json.load(f)
+    return []
+
+def save_address(address):
+    addresses = load_tracked_addresses()
+    addresses.append(address)
+    with open(TRACKED_ADDRESSES_FILE, 'w') as f:
+        json.dump(addresses, f)
