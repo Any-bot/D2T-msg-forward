@@ -58,8 +58,3 @@ python main.py
 ```
 
 ## Version 1.0 13/11/2024
-
-## Contact
-
-- [Telegram](https://t.me/crypto_0614)
-- [Email](mailto:pleasebugmenot.dev@gmail.com)
