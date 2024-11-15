@@ -1,0 +1,11 @@
+{
+  "telegram": {
+    "bot_username": "@helenus_trojanbot"
+  },
+    "discord": {
+        "server_channels": [
+            {"server_id_1": ["channel_id_1", "channel_id_2"]},
+            {"server_id_2": ["channel_id_3", "channel_id_4"]}
+        ]
+    }
+}
