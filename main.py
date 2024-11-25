@@ -36,7 +36,8 @@ telegram_client = TelegramClient('session_name', TELEGRAM_API_ID, TELEGRAM_API_H
 @discord_client.event
 async def on_ready():
     logger.info(f'Logged in as {discord_client.user}')
-    await telegram_client.start()
+    print(f'Logged in as {discord_client.user}')
+    # await telegram_client.start()
 
 @discord_client.event
 async def on_message(message):
@@ -62,13 +63,20 @@ async def on_message(message):
 
 # Start Telegram client before Discord
 async def start_telegram():
+    print("Starting Telegram client...")
     await telegram_client.start()
     logger.info("Telegram client started successfully")
+
+async def start_discord():
+    print("Starting Discord client...  ", DISCORD_USER_TOKEN)
+    await discord_client.start(DISCORD_USER_TOKEN)
+
+
 
 # Run both clients
 async def main():
     await start_telegram()
-    await discord_client.start(DISCORD_USER_TOKEN)
+    await start_discord()
 
 # Run everything
 if __name__ == "__main__":
