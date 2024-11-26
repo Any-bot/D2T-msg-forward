@@ -9,8 +9,8 @@ file_handler = logging.FileHandler('app.log')
 file_handler.setLevel(logging.DEBUG)  # Set level for file
 
 # Create a formatter
-# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
 
 # Add the formatter to the file handler
 file_handler.setFormatter(formatter)
