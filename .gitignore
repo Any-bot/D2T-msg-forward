@@ -2,3 +2,5 @@
 config.json
 app.log
 tracked_addresses.json
+
+session_name.session
