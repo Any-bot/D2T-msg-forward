@@ -1,4 +1,4 @@
-# D2T-msg-forward using Self-Bot
+# Discord to Telegram(D2T) message forward using Self-Bot
 
 This is a simple Python script that forwards messages from a Discord channel to a Telegram bot when a message includes a Solana token address.
 This is a **self-bot**.
@@ -85,6 +85,5 @@ python main.py
 
 
 ## Author
-[Email](pleasebugmenot.dev@gmail.com)
 
-[Telegram](https://t.me/crypto_0614)
+[Telegram](https://t.me/plzbugmenot)
